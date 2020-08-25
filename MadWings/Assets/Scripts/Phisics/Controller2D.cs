@@ -20,6 +20,11 @@ public class Controller2D : MonoBehaviour
         rb2d.MovePosition(direction);
     }
 
+    public void MoveRotation(Quaternion angle)
+    {
+	    rb2d.MoveRotation(angle);
+    }
+
     public void MoveAxisX()
     {
         rb2d.velocity = transform.right * speed;
