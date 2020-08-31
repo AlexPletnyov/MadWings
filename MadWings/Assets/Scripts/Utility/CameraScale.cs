@@ -6,7 +6,7 @@ using UnityEngine.PlayerLoop;
 
 public class CameraScale : MonoBehaviour
 {
-    public Camera camera;
+    public Camera m_camera;
     public float targetHeight = 540f;
     public float unitsPerWidth = 40f;
 
@@ -21,6 +21,6 @@ public class CameraScale : MonoBehaviour
     {
         var height = Mathf.RoundToInt(targetHeight / (float) Screen.width * Screen.height);
         pixelsToUnits = targetHeight / unitsPerWidth;
-        camera.orthographicSize = height / pixelsToUnits / 2;
+        m_camera.orthographicSize = height / pixelsToUnits / 2;
     }
 }

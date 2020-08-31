@@ -2,8 +2,13 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Controller2D))]
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IPooledObject
 {
+	public ObjectPooler.ObjectInfo.ObjectType Type => type;
+
+	[SerializeField]
+	private ObjectPooler.ObjectInfo.ObjectType type;
+
 	[SerializeField] private float speed;
 
 	[SerializeField] private int damage;

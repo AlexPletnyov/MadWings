@@ -563,7 +563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 5
-  moveSpeed: 0.05
+  moveSpeed: 0.02
 --- !u!212 &1083191335
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -638,7 +638,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -769,6 +769,66 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 218491080a6d2174e9551e0e6ef6d918, type: 3}
+--- !u!1 &1142932541
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1142932543}
+  - component: {fileID: 1142932542}
+  m_Layer: 0
+  m_Name: Object Pooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1142932542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142932541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 998df1195d5e41258e0826ac259a0e06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectInfo:
+  - Type: 0
+    Prefab: {fileID: 6345826474744381489, guid: cb4f7223e3a638c448ba4f56d97a58d9,
+      type: 3}
+    StartCount: 10
+  - Type: 1
+    Prefab: {fileID: 6345826474744381489, guid: cb4f7223e3a638c448ba4f56d97a58d9,
+      type: 3}
+    StartCount: 10
+  - Type: 2
+    Prefab: {fileID: 6345826474744381489, guid: cb4f7223e3a638c448ba4f56d97a58d9,
+      type: 3}
+    StartCount: 10
+  - Type: 3
+    Prefab: {fileID: 6345826474744381489, guid: cb4f7223e3a638c448ba4f56d97a58d9,
+      type: 3}
+    StartCount: 10
+--- !u!4 &1142932543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142932541}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1199015124
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,6 +1018,50 @@ Transform:
   m_Father: {fileID: 1259033816}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1778683701
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1778683703}
+  - component: {fileID: 1778683702}
+  m_Layer: 0
+  m_Name: NewBulet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1778683702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778683701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 106e5f030ae272b45b67622fe9acd24f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+--- !u!4 &1778683703
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778683701}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.48641515, y: 1.3462458, z: -5.139761}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1810949628
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,7 +1093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3485a418396e64aad3f9fbaf2a957f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1810949631}
+  m_camera: {fileID: 1810949631}
   targetHeight: 1080
   unitsPerWidth: 10
 --- !u!81 &1810949630
