@@ -18,9 +18,15 @@ public class Follower : MonoBehaviour
 		controller = GetComponent<Controller2D>();
 	}
 
-	private void Update()
+	private void FixedUpdate()
+	{
+		Move();
+	}
+
+	private void Move()
 	{
 		distanceTraveled += speed * Time.deltaTime;
+
 		path = pathCreator.path.GetPointAtDistance(distanceTraveled, end);
 
 		angle.z = pathCreator.path.GetRotationAtDistance(distanceTraveled, end).z;

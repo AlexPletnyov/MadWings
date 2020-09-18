@@ -16,12 +16,10 @@ public class Bullet : MonoBehaviour, IPooledObject
 	private Controller2D controller;
 	private bool isPlayerBullet;
 	private bool isEnemyBullet;
-	private Pool pool;
 
 	private void Awake()
 	{
 		controller = GetComponent<Controller2D>();
-		pool = GetComponentInParent<Pool>();
 		controller.speed = speed;
 		isPlayerBullet = gameObject.CompareTag("PlayerBullet");
 		isEnemyBullet = gameObject.CompareTag("EnemyBullet");
@@ -47,7 +45,7 @@ public class Bullet : MonoBehaviour, IPooledObject
 				if (isPlayerBullet)
 				{
 					coll.GetComponent<ICharacter>().GetDamage(damage);
-					GetComponentInParent<Pool>().Despawn(gameObject);
+					ObjectPooler.Instance.DestroyObject(gameObject);
 				}
 				break;
 
@@ -55,7 +53,7 @@ public class Bullet : MonoBehaviour, IPooledObject
 				if (isEnemyBullet)
 				{
 					coll.GetComponent<ICharacter>().GetDamage(damage);
-					GetComponentInParent<Pool>().Despawn(gameObject);
+					ObjectPooler.Instance.DestroyObject(gameObject);
 				}
 				break;
 		}

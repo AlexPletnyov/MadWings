@@ -73,8 +73,7 @@ public class ObjectPooler : MonoBehaviour
 
 	public GameObject GetObject(ObjectInfo.ObjectType type)
 	{
-		var obj = pools[type].Objects.Count > 0 ? 
-		pools[type].Objects.Dequeue() : InstantiateObject(type, pools[type].Container);
+		var obj = pools[type].Objects.Count > 0 ? pools[type].Objects.Dequeue() : InstantiateObject(type, pools[type].Container);
 		obj.SetActive(true);
 		return obj;
 	}
@@ -83,5 +82,12 @@ public class ObjectPooler : MonoBehaviour
 	{
 		pools[obj.GetComponent<IPooledObject>().Type].Objects.Enqueue(obj);
 		obj.SetActive(false);
+	}
+
+	public void SpawnObject(ObjectInfo.ObjectType type, GameObject spawnPoint, float rotateAngle)
+	{
+		var bullet = ObjectPooler.Instance.GetObject(type);
+		bullet.transform.position = spawnPoint.transform.position;
+		bullet.transform.rotation = Quaternion.Euler(0, 0, rotateAngle);
 	}
 }

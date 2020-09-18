@@ -1,64 +1,44 @@
 ﻿using System;
 using System.Collections;
-using System.Transactions;
 using UnityEngine;
 
-[RequireComponent(typeof(Pool))]
 public class Spawner : MonoBehaviour
 {
-	public int amount;
-	public float delay;
-	public bool start = false;
-	public bool despawnAll;
+	[SerializeField] private ObjectPooler.ObjectInfo.ObjectType[] pools;
+	[SerializeField, Range(0, 20)] public int type = 0;
+	[SerializeField] private GameObject[] spawnPoints;
+	private bool isSpawn = true;
+	private bool canSpawnAfterDelay = true;
+	private float shootingDelay;
 
-	private Pool pool;
-	private GameObject[] objects;
-
-	private void Awake()
-	{
-		pool = GetComponent<Pool>();
-		pool.startingPoolSize = amount;
-
-		if (amount == 0 && pool != null)
-		{
-			amount = pool.startingPoolSize;
-		}
-
-		objects = new GameObject[amount];
-	}
-
-	private void Despawn(GameObject obj)
-	{
-		pool.Despawn(obj);
-	}
 
 	private void Update()
 	{
-		if (start)
+		if (canSpawnAfterDelay)
 		{
-			StartCoroutine(Spawn());
-			start = false;
-		}
-
-		if (despawnAll)
-		{
-			for (int i = 0; i < objects.Length; i++)
-			{
-				Despawn(objects[i]);
-			}
-
-			objects = new GameObject[amount];
-
-			despawnAll = false;
+			isSpawn = true;
 		}
 	}
 
-	IEnumerator Spawn()
+	protected void FixedUpdate()
 	{
-		for (int i = 0; i < amount; i++)
+		if (isSpawn)
 		{
-			objects[i] = pool.Spawn();
-			yield return new WaitForSeconds(delay);
+			Spawn();
+			StartCoroutine(ShootingDelay(shootingDelay));
+			isSpawn = false;
 		}
+	}
+
+	public virtual void Spawn()
+	{
+		ObjectPooler.Instance.SpawnObject(pools[type], spawnPoints[0], 0);
+	}
+
+	IEnumerator ShootingDelay(float delay)
+	{
+		canSpawnAfterDelay = false;
+		yield return new WaitForSeconds(delay);
+		canSpawnAfterDelay = true;
 	}
 }

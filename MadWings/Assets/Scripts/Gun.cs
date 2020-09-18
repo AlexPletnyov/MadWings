@@ -11,7 +11,7 @@ public class Gun : MonoBehaviour
 	}
 
 	[Header("Resources")]
-	[SerializeField] private Pool[] bulletPools;
+	[SerializeField] private ObjectPooler.ObjectInfo.ObjectType[] bulletPools;
 	[SerializeField] private GameObject[] firePoints;
 
 	[Header("Settings")]
@@ -61,16 +61,16 @@ public class Gun : MonoBehaviour
 		switch (fireType)
 		{
 			case 1:
-				CreateBullet(bulletPools[bulletType], firePoints[0], 0);
+				ObjectPooler.Instance.SpawnObject(bulletPools[bulletType], firePoints[0], 0);
 				break;
 			case 2:
-				CreateBullet(bulletPools[bulletType], firePoints[1], 0);
-				CreateBullet(bulletPools[bulletType], firePoints[2], 0);
+				ObjectPooler.Instance.SpawnObject(bulletPools[bulletType], firePoints[1], 0);
+				ObjectPooler.Instance.SpawnObject(bulletPools[bulletType], firePoints[2], 0);
 				break;
 			case 3:
-				CreateBullet(bulletPools[bulletType], firePoints[0], 0);
-				CreateBullet(bulletPools[bulletType], firePoints[1], 5);
-				CreateBullet(bulletPools[bulletType], firePoints[2], -5);
+				ObjectPooler.Instance.SpawnObject(bulletPools[bulletType], firePoints[0], 0);
+				ObjectPooler.Instance.SpawnObject(bulletPools[bulletType], firePoints[1], 5);
+				ObjectPooler.Instance.SpawnObject(bulletPools[bulletType], firePoints[2], -5);
 				break;
 		}
 	}
@@ -89,13 +89,6 @@ public class Gun : MonoBehaviour
 
 				break;
 		}
-	}
-
-	private void CreateBullet(Pool bulletPool, GameObject firePoint, float rotateAngle)
-	{
-		var obj = bulletPool.Spawn();
-		obj.transform.position = firePoint.transform.position;
-		obj.transform.rotation = Quaternion.Euler(0, 0, rotateAngle);
 	}
 
 	IEnumerator ShootingDelay(float delay)
