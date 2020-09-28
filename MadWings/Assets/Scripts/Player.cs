@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
 			    switch (bonus.bonusType)
 			    {
 				    case BonusType.IncreaseAttack:
-					    GetComponent<Gun>().fireType++; //TODO: переделать
+					    //GetComponent<Gun>().fireType++; //TODO: переделать
 
                         break;
 				    case BonusType.Health:
@@ -100,3 +100,4 @@ public class Player : MonoBehaviour
 	    }
     }
 }
+	
