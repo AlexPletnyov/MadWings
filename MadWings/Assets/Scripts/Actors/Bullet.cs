@@ -2,13 +2,8 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Controller2D))]
-public class Bullet : MonoBehaviour, IPooledObject
+public class Bullet : MonoBehaviour, IPoolable
 {
-	public ObjectPooler.ObjectInfo.ObjectType Type => type;
-
-	[SerializeField]
-	private ObjectPooler.ObjectInfo.ObjectType type;
-
 	[SerializeField] private float speed;
 
 	[SerializeField] private int damage;
@@ -45,7 +40,8 @@ public class Bullet : MonoBehaviour, IPooledObject
 				if (isPlayerBullet)
 				{
 					coll.GetComponent<ICharacter>().GetDamage(damage);
-					ObjectPooler.Instance.DestroyObject(gameObject);
+					//ObjectPooler.Instance.DestroyObject(gameObject);
+					ManagerPool.Instance.Despawn(PoolType.Bullets, gameObject);
 				}
 				break;
 
@@ -53,9 +49,18 @@ public class Bullet : MonoBehaviour, IPooledObject
 				if (isEnemyBullet)
 				{
 					coll.GetComponent<ICharacter>().GetDamage(damage);
-					ObjectPooler.Instance.DestroyObject(gameObject);
 				}
 				break;
 		}
+	}
+
+	public void OnSpawn()
+	{
+
+	}
+
+	public void OnDespawn()
+	{
+
 	}
 }

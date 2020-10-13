@@ -34,7 +34,8 @@ public class DestroyArea : MonoBehaviour
 		switch (coll.tag)
 		{
 			case "PlayerBullet":
-				ObjectPooler.Instance.DestroyObject(coll.gameObject);
+				//ObjectPooler.Instance.DestroyObject(coll.gameObject);
+				ManagerPool.Instance.Despawn(PoolType.Bullets, coll.gameObject);
 				break;
 		}
 	}

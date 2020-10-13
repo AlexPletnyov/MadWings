@@ -7,6 +7,7 @@ public class Loader : MonoBehaviour
 {
 	public GameObject prefab;
 	public GameObject bullet;
+	public GameObject enemy;
 
 
 	public List<GameObject> obj = new List<GameObject>();
@@ -15,6 +16,8 @@ public class Loader : MonoBehaviour
 	{
 		ManagerPool.Instance.AddPool(PoolType.Entities).PopulateWith(prefab, 50);
 		ManagerPool.Instance.AddPool(PoolType.Bullets).PopulateWith(bullet, 50);
+		ManagerPool.Instance.AddPool(PoolType.Enemys).PopulateWith(enemy, 50);
+
 	}
 
 	private void Update()

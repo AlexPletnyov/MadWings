@@ -2,7 +2,7 @@
 using PathCreation;
 using UnityEngine;
 	
-public class Follower : MonoBehaviour
+public class PathFollower : MonoBehaviour
 {
 	public PathCreator pathCreator;
 	public EndOfPathInstruction end;

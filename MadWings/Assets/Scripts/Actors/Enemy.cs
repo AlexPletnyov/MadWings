@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Controller2D))]
-public class Enemy : MonoBehaviour, ICharacter, IPooledObject
+public class Enemy : MonoBehaviour, ICharacter, IPoolable
 {
-	public ObjectPooler.ObjectInfo.ObjectType Type => type;
-	[SerializeField] private ObjectPooler.ObjectInfo.ObjectType type;
 	[SerializeField] private float hp;
 	public int damage;
 	public bool destroyBehindBounds;
@@ -52,6 +50,15 @@ public class Enemy : MonoBehaviour, ICharacter, IPooledObject
 
 	public void Destruction()
 	{
-		ObjectPooler.Instance.DestroyObject(gameObject);
+		ManagerPool.Instance.Despawn(PoolType.Enemys, gameObject);
+	}
+
+	public void OnSpawn()
+	{
+	}
+
+	public void OnDespawn()
+	{
+
 	}
 }
