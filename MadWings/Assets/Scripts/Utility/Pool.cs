@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
-public class Pool : IDisposable
+public class Pool : MonoBehaviour
 {
 	#region OldVersion
 
@@ -125,7 +126,7 @@ public class Pool : IDisposable
 		parentPool = parent;
 	}
 
-	public GameObject Spawn(GameObject prefab, Vector3 position = default(Vector3), 
+	public GameObject Spawn(GameObject prefab, Vector3 position = default(Vector3),
 		Quaternion rotation = default(Quaternion), Transform parent = null)
 	{
 		var key = prefab.GetInstanceID();
@@ -158,16 +159,19 @@ public class Pool : IDisposable
 
 	public void Despawn(GameObject go)
 	{
-		go.SetActive(false);
-
-		cachedObjects[cachedIds[go.GetInstanceID()]].Push(go);
-
-		var poolable = go.GetComponent<IPoolable>();
-		poolable?.OnDespawn();
-
-		if (parentPool != null)
+		if (go != null && !cachedObjects[cachedIds[go.GetInstanceID()]].Contains(go) && go.activeInHierarchy)
 		{
-			go.transform.SetParent(parentPool);
+			go.SetActive(false);
+
+			cachedObjects[cachedIds[go.GetInstanceID()]].Push(go);
+
+			var poolable = go.GetComponent<IPoolable>();
+			poolable?.OnDespawn();
+
+			if (parentPool != null)
+			{
+				go.transform.SetParent(parentPool);
+			}
 		}
 	}
 
@@ -178,7 +182,7 @@ public class Pool : IDisposable
 		cachedIds.Clear();
 	}
 
-	public GameObject Populate(GameObject prefab, Vector3 position = default(Vector3), 
+	public GameObject Populate(GameObject prefab, Vector3 position = default(Vector3),
 		Quaternion rotation = default(Quaternion), Transform parent = null)
 	{
 		var go = Object.Instantiate(prefab, position, rotation, parent).transform;

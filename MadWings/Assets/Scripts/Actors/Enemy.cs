@@ -7,6 +7,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, ICharacter, IPoolable
 {
 	[SerializeField] private float hp;
+	private float startHp;
+	private Vector3 startPosition;
 	public int damage;
 	public bool destroyBehindBounds;
 	private Vector2 destroyAllCollSize;
@@ -15,6 +17,8 @@ public class Enemy : MonoBehaviour, ICharacter, IPoolable
 	private void Awake()
 	{
 		controller = GetComponent<Controller2D>();
+		startHp = hp;
+		startPosition = transform.position;
 	}
 
 	private void Start()
@@ -40,9 +44,9 @@ public class Enemy : MonoBehaviour, ICharacter, IPoolable
 
 	public void GetDamage(int damage)
 	{
-		hp -= damage;
+		startHp -= damage;
 
-		if (hp <= 0)
+		if (startHp <= 0)
 		{
 			Destruction();
 		}
@@ -59,6 +63,9 @@ public class Enemy : MonoBehaviour, ICharacter, IPoolable
 
 	public void OnDespawn()
 	{
-
+		startHp = hp;
+		transform.position = startPosition;
+		var pathFollower = GetComponent<PathFollower>();
+		pathFollower.distanceTraveled = 0;
 	}
 }

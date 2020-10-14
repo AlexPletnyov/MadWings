@@ -13,8 +13,6 @@ public class Spawner : MonoBehaviour
 	public bool isSpawnAllObject;
 	[Range(0, 50)] public int objectType;
 	[Range(1, 50)] public int spawnType = 1;
-	[Tooltip("0 = infinity")] public int amount;
-	public float delay = 0.1f;
 
 	public float fireRate = 1f;
 	private float nextFire = 0f;

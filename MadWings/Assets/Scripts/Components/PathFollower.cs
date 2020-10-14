@@ -8,7 +8,7 @@ public class PathFollower : MonoBehaviour
 	public EndOfPathInstruction end;
 	public float speed = 5;
 
-	private float distanceTraveled;
+	public float distanceTraveled;
 	private Vector2 path;
 	private Quaternion angle;
 	private Controller2D controller;
